@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/about' => 'homes#about', as:'about'
   devise_for :users
   
-  resources :post_images, only: [:new, :index, :show, :create, :destroy]
+  resources :post_images, only: [:new, :index, :show, :create, :destroy] do
+    resources :post_comments, only: [:create, :destroy]
+  end
   resources :users, only: [:show, :edit, :update]
+  
 end
